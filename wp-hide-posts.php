@@ -12,6 +12,8 @@ Author URI: http://crowdfavorite.com
  * Initialize the taxonomy
  **/
 function cfhp_init() {
+	load_plugin_textdomain('cfhp');
+
 	$post_types = cfhp_post_types();
 	$tax = cfhp_get_taxonomy_slug();
 	$args = array(
