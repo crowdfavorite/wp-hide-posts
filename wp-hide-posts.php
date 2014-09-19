@@ -50,12 +50,15 @@ function cfhp_create_term() {
 		$term_data = wp_create_term( $term_slug, $tax );
 		if ( is_wp_error( $term_data ) ) {
 			return 0;
-		} elseif ( is_array( $term_data ) ) {
+		}
+		elseif ( is_array( $term_data ) ) {
 			return $term_data['term_id'];
-		} else {
+		}
+		else {
 			return $term_data;
 		}
-	} else {
+	}
+	else {
 		return $term->term_id;
 	}
 }
@@ -133,7 +136,8 @@ function cfhp_meta_box( $post ) {
 	$terms = wp_get_object_terms( $post->ID, $tax, array( 'fields' => 'ids' ) );
 	if ( is_array( $terms ) && ! empty( $terms ) ) {
 		$checked = true;
-	} else {
+	}
+	else {
 		$checked = false;
 	}
 
