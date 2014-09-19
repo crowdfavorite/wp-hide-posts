@@ -3,7 +3,7 @@
 Plugin Name: CF Hide Posts
 Plugin URI: https://github.com/crowdfavorite/wp-hide-posts
 Description: Allows one to exclude posts from the main loop as well as the main RSS feed. Filters are in place to add this capability to multiple post types.
-Version: 0.1
+Version: 0.2
 Author: Crowd Favorite
 Author URI: http://crowdfavorite.com
 */
