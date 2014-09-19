@@ -2,7 +2,7 @@
 /*
 Plugin Name: CF Hide Posts
 Plugin URI: https://github.com/crowdfavorite/wp-hide-posts
-Description: Allows one to exclude posts from the main loop as well as the main RSS feed. Filters are in place to add this capability to multiple post types. 
+Description: Allows one to exclude posts from the main loop as well as the main RSS feed. Filters are in place to add this capability to multiple post types.
 Version: 0.1
 Author: Crowd Favorite
 Author URI: http://crowdfavorite.com
@@ -84,15 +84,15 @@ function cfhp_post_types() {
  **/
 function cfhp_is_home_rss($query) {
 	if (
-		$query->is_feed &&  
-		!( 
-			$query->is_singular || 
-			$query->is_archive || 
-			$query->is_search || 
-			$query->is_trackback || 
-			$query->is_404 || 
-			$query->is_admin || 
-			$query->is_comments_popup || 
+		$query->is_feed &&
+		!(
+			$query->is_singular ||
+			$query->is_archive ||
+			$query->is_search ||
+			$query->is_trackback ||
+			$query->is_404 ||
+			$query->is_admin ||
+			$query->is_comments_popup ||
 			$query->is_robots
 		)
 	) {
@@ -104,9 +104,9 @@ function cfhp_is_home_rss($query) {
 
 /**
  * Modify the loop to exclude certain posts
- **/ 
+ **/
 function cfhp_pre_get_posts($query) {
-	if ($query->is_home || cfhp_is_home_rss($query) || apply_filters('cfhp_hide_on', false, &$query)) {
+	if ($query->is_home || cfhp_is_home_rss($query) || apply_filters('cfhp_hide_on', false, $query)) {
 		$query->query_vars['tax_query'][] = array(
 			'taxonomy' => cfhp_get_taxonomy_slug(),
 			'field' => 'slug',
@@ -146,10 +146,10 @@ function cfhp_meta_box($post) {
 <div class="cf_meta_set">
 	<?php _e('<p>Hide this post from the homepage loop and RSS feed. This post will show up in all other archives.</p>', 'cfhp'); ?>
 	<input type="hidden" name="<?php echo esc_attr('tax_input['.$tax.'][]') ?>" value="0" />
-	<input type="checkbox" id="cfhp-select" name="<?php echo esc_attr('tax_input['.$tax.'][]') ?>" value="<?php echo esc_attr(cfhp_get_term_id()); ?>"<?php checked($checked, true, true); ?> /> 
+	<input type="checkbox" id="cfhp-select" name="<?php echo esc_attr('tax_input['.$tax.'][]') ?>" value="<?php echo esc_attr(cfhp_get_term_id()); ?>"<?php checked($checked, true, true); ?> />
 	<label for="cfhp-select" class="after">
-		<?php _e('Hide Post?', 'cfhp'); ?>	
+		<?php _e('Hide Post?', 'cfhp'); ?>
 	</label>
 </div>
-<?php 
+<?php
 }
